@@ -1,0 +1,58 @@
+.sun {
+    position: absolute;
+    right: 250px;
+    transform: scale(0.5);
+}
+
+.moon {
+    position: absolute;
+    left: 150px;
+    transform: scale(0.1);
+}
+
+.sun, .moon {
+    pointer-events: none;
+}
+
+.sun-radio, .moon-radio {
+    display: block;
+    position: absolute;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background-color: white;
+    cursor: pointer;
+}
+
+.sun-radio {
+    right: 388px;
+    top: 130px;
+    transform: scale(4.5);
+    z-index: 10;
+}
+
+.moon-radio {
+    left: 435px;
+    top: 287px;
+    transform: scale(3);
+    z-index: 10;
+}
+
+.sun-radio:checked, .moon-radio:checked {
+    opacity: 0;
+}
+
+.pre-title {
+    position: relative;
+    top: 175px;
+}
+
+.sun-radio:checked ~ .main-contents {
+    background: linear-gradient(to bottom, #007ced, #cce7ff);
+}
+
+.moon-radio:checked ~ .main-contents {
+    background: linear-gradient(to top, #283e51, #0a2342);
+}

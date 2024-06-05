@@ -1,0 +1,42 @@
+.cactus {
+    position: absolute;
+    z-index: 2;
+}
+
+.cactus-1 {
+    transform: scale(0.2);
+    left: 10%;
+    bottom: -17%;
+}
+
+.cactus-2 {
+    transform: scale(0.3);
+    left: 72%;
+    bottom: -18%;
+}
+
+.cactus-3 {
+    transform: scale(0.1);
+    left: 91%;
+    bottom: -18%;
+}
+
+.cactus-4 {
+    transform: scale(0.2);
+    left: 80%;
+    bottom: -18%;
+}
+
+.cactus-5 {
+    transform: scale(0.2);
+    left: 42%;
+    bottom: -17%;
+}
+
+.cactuses li:nth-child(4) img {
+    filter: hue-rotate(260deg);
+}
+
+.cactuses ~ div {
+    color: blue;
+}

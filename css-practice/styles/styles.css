@@ -1,0 +1,54 @@
+* {
+    font-family: monospace;
+    font-size: 20px;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+
+.main-contents {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 100vh;
+}
+
+.footer {
+    position: absolute;
+    display: inline-block;
+    background: sandybrown;
+    width: 100%;
+    height: 6%;
+    bottom: 0;
+}
+
+#desert-background {    
+    position: absolute;
+    display: inline;
+    width: 100%;
+    bottom: 3%;
+    transform: scaleX(1.5);
+    z-index: 0;
+}
+
+#camel {
+    display: inline; 
+    position: absolute;
+    right: 10%;
+    bottom: -9%;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 54%;
+    right: 10%;
+    transform: rotate(358deg);
+}

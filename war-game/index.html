@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <title>War Game</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body onload="gameArea.start()">
+    <div class="contents">
+        <h1 class="game-header">War Game</h1>
+        <canvas id="canvas" width="480" height="300"></canvas>
+        <p id="status-text">Waiting for war start</p>
+        <hr>
+        <p id="auto-status">Auto mode: OFF</p>
+        <div class="menu-button-group">
+            <button id="clear-button" onclick="resetGame()">Reset</button>
+            <button id="start-war-button" onclick="startWar()">Start battle</button>
+            <button id="activate-auto-mode" onclick="handleAutoToggle()">Toggle auto</button>
+        </div>
+        <div class="team-sections">
+            <section class="team-a">
+                <div class="team-a-add-remove">
+                    <button id="add-team-a" onclick="addSoldier('a')">Add soldier to team A</button>
+                    <button id="remove-soldier-a" onclick="removeSoldier('a')">Remove soldier from team A</button>
+                </div>
+                <div class="team-a-customization">
+                    <form id="team-a-form">
+                        <label for="team-a-name">Set Team A name:</label>
+                        <input type="text" id="team-a-name" name="team-a-name">
+                        <input type="submit" value="Submit">
+                    </form>
+                        <input id="img-input-team-a" type="file" accept="image/*" onchange="setTeamImage(event, 'a')">
+                        <button onclick="document.getElementById('img-input-team-a').click()">Set Image</button>
+                        <button id="img-clear-team-a" onclick="clearImage('a')">Reset image</button>
+                </div>
+            </section>
+            <section class="team-b">
+                <div class="team-b-add-remove">
+                    <button id="add-team-b" onclick="addSoldier('b')">Add soldier to team B</button>
+                    <button id="remove-soldier-b" onclick="removeSoldier('b')">Remove soldier from team B</button>
+                </div>
+                <div class="team-b-customization">
+                    <form id="team-b-form">
+                        <label for="team-b-name">Set Team B name:</label>
+                        <input type="text" id="team-b-name" name="team-b-name">
+                        <input type="submit" value="Submit">
+                    </form>
+                        <input id="img-input-team-b" type="file" accept="image/*" onchange="setTeamImage(event, 'b')">
+                        <button onclick="document.getElementById('img-input-team-b').click()">Set Image</button>
+                        <button id="img-clear-team-b" onclick="clearImage('b')">Reset image</button>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="src/game.js"></script>
+    <script src="src/battle.js"></script>
+    <script src="src/menu.js"></script>
+</body>
+
+</html>

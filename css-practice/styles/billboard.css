@@ -1,0 +1,86 @@
+.billboard {
+    background-image: url('../imgs/billboard.png');
+    background-size: 90% 125%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    padding: 20px;
+    height: 900px;
+    width: 1500px;
+    max-width: 1600px;
+    margin-top: 50px;
+    animation: rotate 2s infinite linear;
+    z-index: 3;
+}
+
+.color-change-header {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-transform: capitalize;
+    font-weight: 500;
+    display: inline-block;
+    position: relative;
+    font-size: 50px;
+    top: 175px;
+    left: 17.5%;
+}
+
+.color-change-header:hover {        
+    animation: change-color 5s infinite;
+}
+
+.arrow {
+    font-size: 30px;
+    margin: 0 auto;
+    width: fit-content; 
+    position: relative;
+    display: inline-block;
+}
+
+.arrow-1 {
+    right: 29%;
+    top: 25%;
+    animation: rotate 2s infinite linear;
+}
+
+.arrow-2 {
+    right: 0%;
+    top: 25%;
+    animation: reverse-rotate 2s infinite linear;
+}
+
+.arrow-img {
+    width: 250px;
+    display: block;
+}
+
+.text-inside {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 5px;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
+}
+
+@keyframes reverse-rotate {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(-360deg) }
+}
+
+@keyframes change-color {
+    0%, 100% { 
+        color: green; 
+        background-color: red;
+    }
+    33% { 
+        color: blue;
+        background-color: green;
+    }
+    66% { 
+        color: red;
+        background-color: blue; 
+    }
+}
