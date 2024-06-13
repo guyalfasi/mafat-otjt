@@ -56,7 +56,7 @@ router.post('/register', async (ctx: Context) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await userRepository.create({ username: username, password: hashedPassword, isAdmin: secretAdminPassword === process.env.SECRET_ADMIN_PASSWORD });
+    const newUser = await userRepository.registerUser({ username: username, password: hashedPassword, isAdmin: secretAdminPassword === process.env.SECRET_ADMIN_PASSWORD });
 
     ctx.status = 201;
     ctx.body = { message: 'User registered successfully', user: newUser };
@@ -79,7 +79,7 @@ router.post('/admin', authenticate, authorizeAdmin, async (ctx: Context) => {
         return;
     }
 
-    const updatedUser = await userRepository.updateToAdmin(username);
+    const updatedUser = await userRepository.promoteToAdmin(username);
     ctx.status = 200;
     ctx.body = { message: "Changed permissions for user", newAdmin: updatedUser };
 });

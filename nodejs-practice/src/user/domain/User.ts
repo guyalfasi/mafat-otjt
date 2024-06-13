@@ -8,6 +8,6 @@ export interface User {
 
 export interface UserRepository {
     get: (username: string) => Promise<User | undefined>;
-    create: (user: Partial<User>) => Promise<User>;
-    updateToAdmin: (username: string) => Promise<User>;
+    registerUser: (user: Partial<User>) => Promise<User>;
+    promoteToAdmin: (username: string) => Promise<User>;
 }
