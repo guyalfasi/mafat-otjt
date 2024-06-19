@@ -1,5 +1,5 @@
 import db from './db';
-import { UserRepository } from '../domain/User';
+import { UserRepository } from '../domain/user';
 
 const userRepository: UserRepository = {
     get: (username) => db('users').where({ username }).first(),

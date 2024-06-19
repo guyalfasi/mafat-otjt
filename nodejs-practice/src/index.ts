@@ -2,10 +2,11 @@ import 'dotenv/config';
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import koaJwt from 'koa-jwt';
-import userRouter from './user/controllers/UserController';
-import arrayRouter from './array/controllers/ArrayController';
-import UIRouter from './user/controllers/UIController';
-import { methodChecker } from './auth/application/methodChecker';
+import userRouter from './user/controllers/user.controller';
+import arrayRouter from './array/controllers/array.controller';
+import UIRouter from './user/controllers/ui.controller';
+import authRouter from './auth/controllers/auth.controller';
+import { methodChecker } from './auth/infra/methodChecker';
 
 const app: Koa = new Koa();
 
@@ -15,7 +16,7 @@ app.use(koaJwt({
     passthrough: true,
 }));
 
-const routes = [userRouter, arrayRouter, UIRouter]
+const routes = [userRouter, arrayRouter, UIRouter, authRouter]
 
 routes.forEach(router => {
     app.use(router.routes()).use(router.allowedMethods());

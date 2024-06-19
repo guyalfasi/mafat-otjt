@@ -1,11 +1,11 @@
 import { Context, Next } from 'koa';
 import jwt from 'jsonwebtoken';
 
-export const authenticate = async (ctx: Context, next: Next) => {
+export const validate = async (ctx: Context, next: Next) => {
     const token = ctx.cookies.get('auth');
     if (!token) {
         ctx.status = 401;
-        ctx.body = { message: 'Authentication Error: User not logged in' };
+        ctx.body = { error: 'Authentication Error: User not logged in' };
         return;
     }
 
@@ -15,6 +15,6 @@ export const authenticate = async (ctx: Context, next: Next) => {
         await next();
     } catch (err) {
         ctx.status = 400;
-        ctx.body = { message: 'Authentication Error: Invalid token' };
+        ctx.body = { error: 'Authentication Error: Invalid token' };
     }
 };

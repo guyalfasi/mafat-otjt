@@ -1,19 +1,18 @@
 import Router from 'koa-router';
 import { Context } from 'koa';
-import { array, ArrayEndpoint } from '../domain/Array';
-import { authenticate } from '../../auth/application/authenticate';
-import { authorizeAdmin } from '../../auth/application/authorizeAdmin';
+import { array, ArrayItem } from '../domain/array';
+import { validate } from '../../auth/controllers/validate';
+import { authorizeAdmin } from '../../auth/controllers/authorizeAdmin';
 
-const router = new Router();
+const router = new Router({ prefix: '/array' });
+router.use(validate); 
 
-router.use(authenticate);
-
-router.get('/array', async (ctx: Context) => {
+router.get('', async (ctx: Context) => {
     ctx.status = 200;
     ctx.body = { array };
 });
 
-router.get('/array/:index', async (ctx: Context) => {
+router.get('/:index', async (ctx: Context) => {
     const index = parseInt(ctx.params.index);
     if (isNaN(index)) {
         ctx.status = 400;
@@ -31,8 +30,8 @@ router.get('/array/:index', async (ctx: Context) => {
     }
 });
 
-router.post('/array', authorizeAdmin, async (ctx: Context) => {
-    const { value } = ctx.request.body as ArrayEndpoint;
+router.post('', authorizeAdmin, async (ctx: Context) => {
+    const { value } = ctx.request.body as { value: ArrayItem};
     if (!value) {
         ctx.status = 400;
         ctx.body = { error: 'Input missing' };
@@ -43,9 +42,9 @@ router.post('/array', authorizeAdmin, async (ctx: Context) => {
     ctx.body = { array };
 });
 
-router.put('/array/:index', authorizeAdmin, async (ctx: Context) => {
+router.put('/:index', authorizeAdmin, async (ctx: Context) => {
     const index = parseInt(ctx.params.index);
-    const { value } = ctx.request.body as ArrayEndpoint;
+    const { value } = ctx.request.body as { value: ArrayItem};
     if (!value) {
         ctx.status = 400;
         ctx.body = { error: 'Input missing' };
@@ -67,13 +66,13 @@ router.put('/array/:index', authorizeAdmin, async (ctx: Context) => {
     }
 });
 
-router.delete('/array', authorizeAdmin, async (ctx: Context) => {
+router.delete('', authorizeAdmin, async (ctx: Context) => {
     array.pop();
     ctx.status = 200;
     ctx.body = { array };
 });
 
-router.delete('/array/:index', authorizeAdmin, async (ctx: Context) => {
+router.delete('/:index', authorizeAdmin, async (ctx: Context) => {
     const index = parseInt(ctx.params.index);
 
     if (isNaN(index)) {
