@@ -4,10 +4,11 @@ import { array, ArrayItem } from '../domain/array';
 import { validate } from '../../auth/controllers/validate';
 import { authorizeAdmin } from '../../auth/controllers/authorizeAdmin';
 
-const router = new Router({ prefix: '/array' });
+const router = new Router({ prefix: '/array'});
+
 router.use(validate); 
 
-router.get('', async (ctx: Context) => {
+router.get('/', async (ctx: Context) => {
     ctx.status = 200;
     ctx.body = { array };
 });
@@ -30,7 +31,7 @@ router.get('/:index', async (ctx: Context) => {
     }
 });
 
-router.post('', authorizeAdmin, async (ctx: Context) => {
+router.post('/', authorizeAdmin, async (ctx: Context) => {
     const { value } = ctx.request.body as { value: ArrayItem};
     if (!value) {
         ctx.status = 400;
@@ -66,10 +67,15 @@ router.put('/:index', authorizeAdmin, async (ctx: Context) => {
     }
 });
 
-router.delete('', authorizeAdmin, async (ctx: Context) => {
-    array.pop();
-    ctx.status = 200;
-    ctx.body = { array };
+router.delete('/', authorizeAdmin, async (ctx: Context) => {
+    if (array.length) {
+        array.pop();
+        ctx.status = 200;
+        ctx.body = { array };
+    } else {
+        ctx.status = 200;
+        ctx.body = { message: 'Array is empty' };
+    }
 });
 
 router.delete('/:index', authorizeAdmin, async (ctx: Context) => {
