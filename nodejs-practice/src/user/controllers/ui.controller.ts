@@ -1,11 +1,11 @@
 import Router from 'koa-router';
 import { Context } from 'koa';
 import { User } from '../domain/user';
-import { validate } from '../../auth/infra/validate';
+import { validateUser } from '../../auth/infra/authUtils';
 
 const router = new Router();
 
-router.use(validate);
+router.use(validateUser);
 
 router.get('/', async (ctx: Context) => {
     const user = ctx.state.user as User;

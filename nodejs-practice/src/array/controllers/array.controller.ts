@@ -1,12 +1,11 @@
 import Router from 'koa-router';
 import { Context } from 'koa';
 import { array, ArrayItem } from '../domain/array';
-import { validate } from '../../auth/infra/validate';
-import { authorizeAdmin } from '../../auth/infra/authorizeAdmin';
+import { authorizeAdmin, validateUser } from '../../auth/infra/authUtils';
 
 const router = new Router({ prefix: '/array'});
 
-router.use(validate); 
+router.use(validateUser); 
 
 router.get('/', async (ctx: Context) => {
     ctx.status = 200;

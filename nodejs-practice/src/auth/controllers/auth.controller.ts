@@ -2,8 +2,8 @@ import { Context } from 'koa';
 import Router from 'koa-router';
 import { User } from '../../user/domain/user';
 import userRepository from '../../user/infra/userRepository';
-import { createToken } from '../infra/createToken';
 import bcrypt from 'bcrypt';
+import { createToken } from '../infra/authUtils';
 
 const router = new Router();
 
@@ -49,7 +49,7 @@ router.post('/register', async (ctx: Context) => {
 
     if (existingUser) {
         ctx.status = 400;
-        ctx.body = { error: 'Username already exists' }         
+        ctx.body = { error: 'Username already exists' }
         return;
     }
 
