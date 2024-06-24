@@ -1,8 +1,8 @@
 import Router from 'koa-router';
 import { Context } from 'koa';
 import { User } from '../domain/user'
-import { validate } from '../../auth/controllers/validate';
-import { authorizeAdmin } from '../../auth/controllers/authorizeAdmin';
+import { validate } from '../../auth/infra/validate';
+import { authorizeAdmin } from '../../auth/infra/authorizeAdmin';
 import userRepository from '../infra/userRepository';
 
 const router = new Router();

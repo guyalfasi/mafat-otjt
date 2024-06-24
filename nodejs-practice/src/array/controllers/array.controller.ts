@@ -1,8 +1,8 @@
 import Router from 'koa-router';
 import { Context } from 'koa';
 import { array, ArrayItem } from '../domain/array';
-import { validate } from '../../auth/controllers/validate';
-import { authorizeAdmin } from '../../auth/controllers/authorizeAdmin';
+import { validate } from '../../auth/infra/validate';
+import { authorizeAdmin } from '../../auth/infra/authorizeAdmin';
 
 const router = new Router({ prefix: '/array'});
 
